@@ -62,21 +62,22 @@ class FollowToggle {
     }
 
     handleClick(){
-        const that = this;
-
-        this.$el.on('click', function (event) {
+        const clickHandler = function (event) {
+            debugger;
             event.preventDefault();
-            if (that.followState === 'unfollowed') {
-                APIUtil.followUser(that.userId);
-                that.followState = 'followed'
+            if (this.followState === 'unfollowed') {
+                APIUtil.followUser(this.userId);
+                this.followState = 'followed'
             } else {
-                APIUtil.unfollowUser(that.userId);
-                that.followState = 'unfollowed'
+                APIUtil.unfollowUser(this.userId);
+                this.followState = 'unfollowed'
             }
 
-            that.render();
+            this.render();
 
-        })
+        }
+
+        this.$el.on('click', clickHandler.bind(this));
 
 
     }
@@ -124,6 +125,8 @@ var __webpack_exports__ = {};
   !*** ./frontend/twitter.js ***!
   \*****************************/
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js")
+window.APIUtil = APIUtil;
 
 $(() => {
     $("button.follow-toggle").each(function(index, el){

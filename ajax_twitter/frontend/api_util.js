@@ -14,7 +14,20 @@ const APIUtil = {
             url: `/users/${id}/follow`,
             dataType: "JSON"
         })
+    },
+
+    searchUsers: queryVal => {
+        return $.ajax ({
+            method: "GET",
+            url: `/users/search/${queryVal}`,
+            dataType: "JSON",
+            data: {
+                query: queryVal
+            }
+        })
     }
+
+
   };
   
   module.exports = APIUtil;

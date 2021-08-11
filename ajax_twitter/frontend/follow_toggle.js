@@ -24,21 +24,21 @@ class FollowToggle {
     }
 
     handleClick(){
-        const that = this;
-
-        this.$el.on('click', function (event) {
+        const clickHandler = function (event) {
             event.preventDefault();
-            if (that.followState === 'unfollowed') {
-                APIUtil.followUser(that.userId);
-                that.followState = 'followed'
+            if (this.followState === 'unfollowed') {
+                APIUtil.followUser(this.userId);
+                this.followState = 'followed'
             } else {
-                APIUtil.unfollowUser(that.userId);
-                that.followState = 'unfollowed'
+                APIUtil.unfollowUser(this.userId);
+                this.followState = 'unfollowed'
             }
 
-            that.render();
+            this.render();
 
-        })
+        }
+
+        this.$el.on('click', clickHandler.bind(this));
 
 
     }
